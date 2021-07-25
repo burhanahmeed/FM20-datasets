@@ -8,6 +8,7 @@ import {
 
 import {
   ListPlayers,
+  Filters,
 } from '../components/list-players'
 
 export default function Wonderkids() {
@@ -19,16 +20,17 @@ export default function Wonderkids() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h4>Football Manager 2020 Wonderkids</h4>
+      <h4>Football Manager 2020 Matures</h4>
       <div style={{maxWidth: 550}}>
         <Alert
-          message="Filtered by top 1000 U21 players with market value less than 15 millions"
+          message="Filtered by U31 & A24 players with CA above 140"
           type="success"
         />
       </div>
 
       <div className="pt-3">
-        <ListPlayers apiUrl="/api/wonderkids" />
+        <Filters />
+        <ListPlayers apiUrl="/api/matures" />
       </div>
     </Layout>
   )

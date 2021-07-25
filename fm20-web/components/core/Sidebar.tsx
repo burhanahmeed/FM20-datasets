@@ -5,7 +5,8 @@ import { Menu } from 'antd'
 const { SubMenu } = Menu
 
 import {
-  DesktopOutlined
+  DesktopOutlined,
+  UserOutlined,
 } from '@ant-design/icons'
 
 export default function Sidebar() {
@@ -38,6 +39,11 @@ export default function Sidebar() {
       <Menu.Item key="/matures" icon={<DesktopOutlined />} onClick={() => handleGo('/matures')}>
         Mature players
       </Menu.Item>
+      <SubMenu key="sub1" icon={<UserOutlined />} title="Average">
+        <Menu.Item key="3">By Club</Menu.Item>
+        <Menu.Item key="4">By Division</Menu.Item>
+        <Menu.Item key="5">By Nation</Menu.Item>
+      </SubMenu>
     </Menu>
   )
 }

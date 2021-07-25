@@ -7,7 +7,13 @@ import {
 import { TableProps } from "antd/lib/table";
 import useNumber from '../../utils/useNumber'
 
-function ListPlayers() {
+type pageProps = {
+  apiUrl: string
+}
+
+function ListPlayers({
+  apiUrl = '/api/lists'
+}: pageProps) {
   const { format } = useNumber()
   const columns = [
     {
@@ -86,6 +92,7 @@ function ListPlayers() {
     pageSize: 30,
     defaultPageSize: 30,
     showSizeChanger: false,
+    total: 0,
   })
 
   React.useEffect(() => {
@@ -108,12 +115,13 @@ function ListPlayers() {
   }
   type paginationType = {
     current: number,
-    pageSize?: number
+    pageSize?: number,
+    total: number,
   }
 
   const fetchData = ({ params }: fetchParams) => {
     setLoading(true)
-    fetch('/api/lists?' + new URLSearchParams({
+    fetch(`${apiUrl}?` + new URLSearchParams({
       currentPage: `${params.pagination.current}`
     }))
       .then(res => res.json())
@@ -142,15 +150,18 @@ function ListPlayers() {
   }
 
   return (
-    <Table
-      {...tableState}
-      rowKey="_id"
-      pagination={pagination}
-      columns={columns}
-      dataSource={data}
-      sticky={true}
-      onChange={handleTableChange}
-    />
+    <>
+      <p>Total players: { format(pagination.total) }</p>
+      <Table
+        {...tableState}
+        rowKey="_id"
+        pagination={pagination}
+        columns={columns}
+        dataSource={data}
+        sticky={true}
+        onChange={handleTableChange}
+      />
+    </>
   )
 }
 

@@ -26,6 +26,7 @@ export default function HomeLayout({ children }: any) {
           </Sider>
           <Content
             className="container p-5"
+            style={{minHeight: '95vh'}}
           >
             {children}
           </Content>
