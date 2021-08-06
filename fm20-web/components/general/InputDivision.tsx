@@ -30,9 +30,6 @@ export default function InputClubs({
       optionFilterProp="children"
       onChange={onChange}
       value={value}
-      filterOption={(input, option) =>
-        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-      }
     >
       {
         data.map((el, idx) => {
