@@ -1,6 +1,5 @@
 import matures from './matures.json'
 import wonderkids from './wonderkids.json'
-import full from './full_version.json'
 import preview from './previews.json'
 import clubs from './clubs.json'
 import divisions from './divisions.json'

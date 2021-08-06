@@ -22,7 +22,7 @@ export default function Wonderkids() {
       <h4>Football Manager 2020 Wonderkids</h4>
       <div style={{maxWidth: 550}}>
         <Alert
-          message="Filtered by top 1000 U21 players with market value less than 15 millions"
+          message="Filtered by top 1000 of U21 players with market value less than 15 millions"
           type="success"
         />
       </div>
