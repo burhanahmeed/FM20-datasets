@@ -93,6 +93,7 @@ function GlobalTable({
       <p>Total players: { format(pagination.total) }</p>
       <Table
         {...tableState}
+        scroll={{x: 800}}
         rowKey="_id"
         pagination={pagination}
         columns={columns}

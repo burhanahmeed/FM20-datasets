@@ -28,7 +28,12 @@ export default function HomeLayout({ children }: any) {
           <CoreHeader />
         </Header>
         <Layout>
-          <Sider width={200} className="site-layout-background">
+          <Sider 
+            width={200}
+            className="site-layout-background"
+            breakpoint="lg"
+            collapsedWidth="0"
+          >
             <Sidebar />
           </Sider>
           <Content
