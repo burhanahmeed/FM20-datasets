@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "lint-staged": {
+    "*.{tsx,ts,js}": "next lint --cache --fix"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "antd": "^4.16.8",
@@ -23,6 +26,7 @@
     "@types/react": "17.0.14",
     "eslint": "7.31.0",
     "eslint-config-next": "11.0.1",
+    "husky": "^7.0.1",
     "typescript": "4.3.5"
   }
 }
