@@ -12,7 +12,7 @@ export default function Header() {
         </Link>
       </div>
       <div>
-        <Link href="/">
+        <Link href="https://github.com/burhanahmeed/FM20-datasets">
           <a className="btn btn-secondary">Github</a>
         </Link>
       </div>
