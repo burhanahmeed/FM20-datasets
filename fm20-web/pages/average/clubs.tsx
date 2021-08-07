@@ -8,7 +8,7 @@ import {
 
 import {
   ListPlayers,
-} from '../components/list-players'
+} from '../../components/list-players'
 
 export default function Wonderkids() {
   return (
