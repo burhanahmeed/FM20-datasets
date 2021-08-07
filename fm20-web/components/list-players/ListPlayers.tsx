@@ -104,7 +104,7 @@ function ListPlayers({
     fetchData({
       params: { pagination }
     })
-  }, [pagination])
+  }, [])
 
   const setLoading = (status: boolean) => {
     setTableState(prev => ({
