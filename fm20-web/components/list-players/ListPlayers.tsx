@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as React from 'react';
 import {
   Table,
@@ -8,7 +9,7 @@ import { TableProps } from "antd/lib/table";
 import useNumber from '../../utils/useNumber'
 
 type pageProps = {
-  apiUrl: string
+  apiUrl?: string
 }
 
 function ListPlayers({
@@ -30,6 +31,7 @@ function ListPlayers({
       title: 'Club',
       dataIndex: 'Club',
       key: 'Club',
+      // eslint-disable-next-line react/display-name
       render: (text: any, record: any) => {
         return (
           <>
@@ -50,6 +52,7 @@ function ListPlayers({
       title: 'Value',
       key: 'Value',
       dataIndex: 'Value',
+      // eslint-disable-next-line react/display-name
       render: (text: any, record: any) => {
         return (
           <>
@@ -65,6 +68,7 @@ function ListPlayers({
       title: 'Body',
       key: 'Body',
       dataIndex: 'Body',
+      // eslint-disable-next-line react/display-name
       render: (text: any, record: any) => {
         return (
           <span>{ record.Height }cm / { record.Weight }kg</span>
@@ -75,6 +79,7 @@ function ListPlayers({
       title: 'CA/PA',
       key: 'capa',
       dataIndex: 'capa',
+      // eslint-disable-next-line react/display-name
       render: (text: any, record: any) => {
         return (
           <span>{ record.CA } / { record.PA }</span>
@@ -99,7 +104,7 @@ function ListPlayers({
     fetchData({
       params: { pagination }
     })
-  }, [])
+  }, [pagination])
 
   const setLoading = (status: boolean) => {
     setTableState(prev => ({

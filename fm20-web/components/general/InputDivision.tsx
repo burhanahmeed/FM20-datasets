@@ -34,7 +34,7 @@ export default function InputClubs({
       {
         data.map((el, idx) => {
           return (
-            <Option value={el}>{ el }</Option>
+            <Option key={idx} value={el}>{ el }</Option>
           )
         })
       }

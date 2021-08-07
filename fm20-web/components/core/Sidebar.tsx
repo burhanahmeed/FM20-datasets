@@ -17,7 +17,7 @@ export default function Sidebar() {
   React.useEffect(() => {
     const path = router.pathname
     setMenu([path])
-  }, [])
+  }, [router.pathname])
 
   const handleGo = (route: string) => {
     setMenu([route])

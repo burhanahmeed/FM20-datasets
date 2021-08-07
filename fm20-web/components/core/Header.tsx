@@ -1,17 +1,20 @@
 import * as React from 'react'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Header() {
   return (
     <div className="d-flex justify-content-between">
       <div className="logo">
-        <a href="/">
+        <Link href="/" passHref={true}>
           <Image src="/imgs/logo.png" alt="me" width="100" height="64" />
-        </a>
+        </Link>
       </div>
       <div>
-        <a href="/" className="btn btn-secondary">Github</a>
+        <Link href="/">
+          <a className="btn btn-secondary">Github</a>
+        </Link>
       </div>
     </div>
   )
