@@ -39,10 +39,10 @@ export default function Sidebar() {
       <Menu.Item key="/matures" icon={<DesktopOutlined />} onClick={() => handleGo('/matures')}>
         Mature players
       </Menu.Item>
-      <SubMenu key="sub1" icon={<UserOutlined />} title="Average">
-        <Menu.Item key="3">By Club</Menu.Item>
-        <Menu.Item key="4">By Division</Menu.Item>
-        <Menu.Item key="5">By Nation</Menu.Item>
+      <SubMenu key="sub1" icon={<UserOutlined />} title="Average of U21 players">
+        <Menu.Item key="/average/clubs" onClick={() => handleGo('/average/clubs')}>By Club</Menu.Item>
+        <Menu.Item key="/average/divisions" onClick={() => handleGo('/average/divisions')}>By Division</Menu.Item>
+        <Menu.Item key="/average/nations" onClick={() => handleGo('/average/nations')}>By Nation</Menu.Item>
       </SubMenu>
     </Menu>
   )
