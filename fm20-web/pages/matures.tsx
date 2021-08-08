@@ -1,3 +1,4 @@
+import * as React from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Layout from '../components/home.layout'
@@ -11,7 +12,23 @@ import {
   Filters,
 } from '../components/list-players'
 
-export default function Wonderkids() {
+type refProps = {
+  get: Function,
+}
+
+export default function Matures() {
+  const listRef = React.useRef<refProps>()
+
+  React.useEffect(() => {
+    if (listRef) {
+      return
+    }
+  }, [listRef])
+
+  const onFilter = () => {
+    listRef.current?.get()
+  }
+
   return (
     <Layout>
       <Head>
@@ -29,8 +46,8 @@ export default function Wonderkids() {
       </div>
 
       <div className="pt-3">
-        <Filters />
-        <ListPlayers apiUrl="/api/matures" />
+        <Filters handleFilter={onFilter} />
+        <ListPlayers ref={listRef} apiUrl="/api/matures" />
       </div>
     </Layout>
   )

@@ -1,21 +1,27 @@
 /* eslint-disable */
 import * as React from 'react';
+import { useRouter } from 'next/router'
 import {
   Table,
   Tag,
   Space,
 } from 'antd'
 import { TableProps } from "antd/lib/table";
+import pickBy from 'lodash/pickBy'
+import identity from 'lodash/identity'
+
 import useNumber from '../../utils/useNumber'
 
 type pageProps = {
-  apiUrl?: string
+  apiUrl?: string,
 }
 
-function ListPlayers({
-  apiUrl = '/api/lists'
-}: pageProps) {
+const ListPlayers = React.forwardRef(({
+  apiUrl = '/api/lists',
+}: pageProps, ref: any) => 
+{
   const { format } = useNumber()
+  const router = useRouter()
   const columns = [
     {
       title: 'Name',
@@ -100,6 +106,15 @@ function ListPlayers({
     total: 0,
   })
 
+
+  React.useImperativeHandle(ref, () => ({
+    get() {
+      fetchData({
+        params: { pagination }
+      })
+    }
+  }))
+
   React.useEffect(() => {
     fetchData({
       params: { pagination }
@@ -126,8 +141,15 @@ function ListPlayers({
 
   const fetchData = ({ params }: fetchParams) => {
     setLoading(true)
+    const { query } = router
+    const querySearch = pickBy({
+      name: query.name,
+      club: query.club
+    }, identity)
+
     fetch(`${apiUrl}?` + new URLSearchParams({
-      currentPage: `${params.pagination.current}`
+      currentPage: `${params.pagination.current}`,
+      ...querySearch
     }))
       .then(res => res.json())
       .then(arrayData => {
@@ -169,6 +191,6 @@ function ListPlayers({
       />
     </>
   )
-}
+})
 
 export default ListPlayers;

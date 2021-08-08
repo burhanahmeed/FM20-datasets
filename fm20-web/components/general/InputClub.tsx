@@ -3,17 +3,18 @@ import { Select } from 'antd'
 
 const { Option } = Select
 
-export default function InputClubs() {
+interface componentProps {
+  onChange: React.ComponentProps<any>,
+  value: string | undefined,
+}
+
+export default function InputClubs({ onChange, value }: componentProps) {
   const [data, setData] = React.useState([])
   React.useEffect(() => {
     fetch('/api/filters/clubs')
       .then(resp => resp.json())
       .then(data => setData(data.lists))
   }, [])
-
-  const onChange = () => {
-
-  }
 
   return (
     <Select
@@ -22,6 +23,7 @@ export default function InputClubs() {
       placeholder="Select a club"
       optionFilterProp="children"
       onChange={onChange}
+      value={value}
     >
       {
         data.map((el, idx) => {

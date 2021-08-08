@@ -1,8 +1,8 @@
+/* eslint-disable */
 import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import Script from 'next/script'
 
 require('../styles/variables.less');
 
@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <Script
+        <script
           data-name="BMC-Widget"
           data-cfasync="false"
           src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           data-position="Right"
           data-x_margin="18"
           data-y_margin="18">
-        </Script>
+        </script>
       </Head>
       <Component {...pageProps} />
     </>
