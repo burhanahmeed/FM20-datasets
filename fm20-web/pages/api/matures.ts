@@ -16,19 +16,16 @@ export default function handler(
   const { query: { currentPage, pageSize = 30, club, name } } = req;
   const { limit, offset } = calculateLimitAndOffset(currentPage, pageSize);
 
-  const data:any = getMature().filter((player) => {
-    if (
-      (club && name)
-      && player.Club === club
-      && player.Name.toLowerCase().indexOf(name.toString().toLowerCase()) !== -1
-    ) {
-      return true;
-    } else if (club && player.Club === club) {
-      return true;
-    } else if (name && player.Name.toLowerCase().indexOf(name.toString().toLowerCase()) !== -1) {
-      return true;
-    }
-  });
+  let data:any = getMature()
+
+  if (club) {
+    data = data.filter((player: any) => player.Club === club)
+  }
+
+  if (name) {
+    data = data.filter((player: any) => player.Name.toLowerCase().indexOf(name.toString().toLowerCase()) !== -1)
+  }
+
   const count = data.length
   const players = data.map((el: any, idx: number) => ({
     ...el,

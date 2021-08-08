@@ -38,6 +38,7 @@ function Filters({
   const { query }: routeParams = router
 
   const [name, setName] = React.useState<string | undefined>(undefined)
+  const [displayedName, setDisplayedName] = React.useState<string | undefined>(undefined)
   const [club, setClub] = React.useState<string | undefined>(undefined)
   const [init, setInit] = React.useState(true)
 
@@ -49,6 +50,7 @@ function Filters({
   }, 1000)
 
   React.useEffect(() => {
+    setDisplayedName(query.name || undefined)
     setName(query.name || undefined)
     setClub(query.club || undefined)
     setTimeout(() => {
@@ -89,8 +91,11 @@ function Filters({
           <Input
             placeholder="Player name"
             prefix={<UserOutlined />}
-            value={name}
-            onChange={changeName}
+            value={displayedName}
+            onChange={(e) => {
+              changeName(e);
+              setDisplayedName(e.target.value);
+            }}
           />
         </Col>
         <Col className="gutter-row">
