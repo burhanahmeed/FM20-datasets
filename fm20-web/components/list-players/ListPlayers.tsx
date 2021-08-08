@@ -22,6 +22,8 @@ const ListPlayers = React.forwardRef(({
 {
   const { format } = useNumber()
   const router = useRouter()
+  const { query } = router
+
   const columns = [
     {
       title: 'Name',
@@ -116,10 +118,12 @@ const ListPlayers = React.forwardRef(({
   }))
 
   React.useEffect(() => {
+    if(!router.isReady) return;
+
     fetchData({
       params: { pagination }
     })
-  }, [])
+  }, [router.isReady])
 
   const setLoading = (status: boolean) => {
     setTableState(prev => ({
@@ -141,7 +145,6 @@ const ListPlayers = React.forwardRef(({
 
   const fetchData = ({ params }: fetchParams) => {
     setLoading(true)
-    const { query } = router
     const querySearch = pickBy({
       name: query.name,
       club: query.club

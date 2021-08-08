@@ -1,7 +1,8 @@
 import * as React from 'react'
+import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import {
-  Row, Col, Input,
+  Row, Col, Input, Button,
 } from 'antd'
 import {
   UserOutlined,
@@ -20,15 +21,25 @@ type domProperty = {
   }
 }
 
-export default function Filters({
+type routeParams = {
+  query: queryParams,
+}
+type queryParams = {
+  name?: string,
+  club?: string,
+}
+
+function Filters({
   handleFilter,
 }: {
   handleFilter: Function,
 }) {
   const router = useRouter()
+  const { query }: routeParams = router
 
   const [name, setName] = React.useState<string | undefined>(undefined)
   const [club, setClub] = React.useState<string | undefined>(undefined)
+  const [init, setInit] = React.useState(true)
 
   const changeName = debounce((e: domProperty) => {
     setName(e.target.value)
@@ -38,7 +49,17 @@ export default function Filters({
   }, 1000)
 
   React.useEffect(() => {
-    onQuery()
+    setName(query.name || undefined)
+    setClub(query.club || undefined)
+    setTimeout(() => {
+      setInit(false)
+    }, 1000);
+  }, [router.isReady])
+
+  React.useEffect(() => {
+    if (!init) {
+      onQuery()
+    }
   }, [name, club])
 
   const onQuery = async () => {
@@ -52,7 +73,11 @@ export default function Filters({
     })
 
     handleFilter()
+  }
 
+  const handleReset = () => {
+    setName(undefined)
+    setClub(undefined)
   }
 
   return (
@@ -64,6 +89,7 @@ export default function Filters({
           <Input
             placeholder="Player name"
             prefix={<UserOutlined />}
+            value={name}
             onChange={changeName}
           />
         </Col>
@@ -73,7 +99,16 @@ export default function Filters({
             onChange={changeClub}
           />
         </Col>
+        <Col className="gutter-row">
+          {
+            !!(name||club) && (
+              <Button onClick={handleReset}>Clear</Button>
+            )
+          }
+        </Col>
       </Row>
     </div>
   )
 }
+
+export default Filters;
