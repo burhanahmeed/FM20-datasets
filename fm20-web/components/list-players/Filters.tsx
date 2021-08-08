@@ -78,6 +78,7 @@ function Filters({
   }
 
   const handleReset = () => {
+    setDisplayedName(undefined)
     setName(undefined)
     setClub(undefined)
   }
@@ -106,7 +107,7 @@ function Filters({
         </Col>
         <Col className="gutter-row">
           {
-            !!(name||club) && (
+            !!(displayedName||club) && (
               <Button onClick={handleReset}>Clear</Button>
             )
           }
