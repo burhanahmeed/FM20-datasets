@@ -13,10 +13,22 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { query: { currentPage, pageSize = 30 } } = req;
+  const { query: { currentPage, pageSize = 30, club, name } } = req;
   const { limit, offset } = calculateLimitAndOffset(currentPage, pageSize);
 
-  const data:any = getMature()
+  const data:any = getMature().filter((player) => {
+    if (
+      (club && name)
+      && player.Club === club
+      && player.Name.toLowerCase().indexOf(name.toString().toLowerCase()) !== -1
+    ) {
+      return true;
+    } else if (club && player.Club === club) {
+      return true;
+    } else if (name && player.Name.toLowerCase().indexOf(name.toString().toLowerCase()) !== -1) {
+      return true;
+    }
+  });
   const count = data.length
   const players = data.map((el: any, idx: number) => ({
     ...el,
